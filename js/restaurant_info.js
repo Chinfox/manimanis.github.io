@@ -22,7 +22,7 @@ initMap = () => {
         scrollWheelZoom: false
       });
       L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.jpg70?access_token={mapboxToken}', {
-        mapboxToken: '<your MAPBOX API KEY HERE>',
+        mapboxToken: 'pk.eyJ1IjoibWFuaWFuaXMiLCJhIjoiY2l4dzJxYmE4MDAwbzJ3bG1yNm1ycjBjaCJ9.Wh2_bwQz6A3OK_izZcS1xQ',
         maxZoom: 18,
         attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
           '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
@@ -150,22 +150,43 @@ createReviewHTML = (review) => {
   const li = document.createElement('li');
   const name = document.createElement('p');
   name.innerHTML = review.name;
+  name.setAttribute('class', 'author');
   li.appendChild(name);
 
   const date = document.createElement('p');
   date.innerHTML = review.date;
+  date.setAttribute('class', 'date');
   li.appendChild(date);
 
   const rating = document.createElement('p');
-  rating.innerHTML = `Rating: ${review.rating}`;
+  //rating.innerHTML = `${review.rating}`;
+  rating.setAttribute('role', 'note');
+  rating.setAttribute('aria-label', 'rating ' + review.rating + ' stars');
+  rating.setAttribute('class', 'rating stars_' + review.rating);
+  createRating(rating, review.rating);
+
   li.appendChild(rating);
 
   const comments = document.createElement('p');
   comments.innerHTML = review.comments;
+  comments.setAttribute('class', 'comment');
   li.appendChild(comments);
 
   return li;
 }
+
+/**
+ * Create a rating with stars
+ */
+createRating = (el, rating) => {
+  rating = Math.floor(rating);
+
+  for (let i = 1; i <= 5; i++) {
+    const star = document.createElement('span');
+    star.setAttribute('class', (i > rating) ? 'fontawesome-star-empty' : 'fontawesome-star');
+    el.appendChild(star);
+  }
+};
 
 /**
  * Add restaurant name to the breadcrumb navigation menu
