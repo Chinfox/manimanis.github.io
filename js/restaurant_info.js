@@ -183,7 +183,7 @@ createRating = (el, rating) => {
 
   for (let i = 1; i <= 5; i++) {
     const star = document.createElement('span');
-    star.setAttribute('class', (i > rating) ? 'fontawesome-star-empty' : 'fontawesome-star');
+    star.setAttribute('class', (i > rating) ? 'far fa-star' : 'fas fa-star');
     el.appendChild(star);
   }
 };
