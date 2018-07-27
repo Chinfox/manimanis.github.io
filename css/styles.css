@@ -215,7 +215,7 @@ nav h1 a {
   min-width: 100%;
 }
 
-#restaurants-list li h1 {
+#restaurants-list li h2 {
   color: #f18200;
   font-family: Arial,sans-serif;
   font-size: 14pt;
@@ -396,4 +396,10 @@ nav h1 a {
 
 #restaurant-hours tr:first-of-type td {
   border-top: thin solid #252831;
+}
+
+:focus {
+  background-color: #01447e !important;
+  color: #fff !important;
+  box-shadow: 0 0 10px red;
 }

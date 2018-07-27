@@ -104,8 +104,8 @@ fillRestaurantHTML = (restaurant = self.restaurant) => {
   image.id = 'restaurant-img';
   image.className = 'restaurant-img';
   image.src = smallImageSrc;
-  image.setAttribute('alt', '');
-  picture.append(image);
+  image.setAttribute('alt', 'Image of ' + restaurant.name);
+  picture.appendChild(image);
 
   //const image = document.getElementById('restaurant-img');
   //image.className = 'restaurant-img'
