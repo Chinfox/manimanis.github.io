@@ -19,14 +19,16 @@ initMap = () => {
       self.newMap = L.map('map', {
         center: [restaurant.latlng.lat, restaurant.latlng.lng],
         zoom: 16,
-        scrollWheelZoom: false
+        scrollWheelZoom: false,
+        // the map is not focused by default
+        keyboard: false
       });
       L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.jpg70?access_token={mapboxToken}', {
         mapboxToken: 'pk.eyJ1IjoibWFuaWFuaXMiLCJhIjoiY2l4dzJxYmE4MDAwbzJ3bG1yNm1ycjBjaCJ9.Wh2_bwQz6A3OK_izZcS1xQ',
         maxZoom: 18,
-        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
-          '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
-          'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/" tabindex="-1">OpenStreetMap</a> contributors, ' +
+          '<a href="https://creativecommons.org/licenses/by-sa/2.0/" tabindex="-1">CC-BY-SA</a>, ' +
+          'Imagery © <a href="https://www.mapbox.com/" tabindex="-1">Mapbox</a>',
         id: 'mapbox.streets'    
       }).addTo(newMap);
       fillBreadcrumb();
@@ -169,26 +171,29 @@ fillReviewsHTML = (reviews = self.restaurant.reviews) => {
  */
 createReviewHTML = (review) => {
   const li = document.createElement('li');
-  const name = document.createElement('p');
+  li.setAttribute('aria-label', 'Review by ' + review.name);
+
+  const name = document.createElement('h3');
   name.innerHTML = review.name;
   name.setAttribute('class', 'author');
   li.appendChild(name);
 
-  const date = document.createElement('p');
+  const date = document.createElement('div');
   date.innerHTML = review.date;
   date.setAttribute('class', 'date');
   li.appendChild(date);
 
-  const rating = document.createElement('p');
+  const rating = document.createElement('div');
   //rating.innerHTML = `${review.rating}`;
   rating.setAttribute('role', 'note');
   rating.setAttribute('aria-label', 'rating ' + review.rating + ' stars');
+  rating.setAttribute('aria-atomic', 'true');
   rating.setAttribute('class', 'rating stars_' + review.rating);
   createRating(rating, review.rating);
 
   li.appendChild(rating);
 
-  const comments = document.createElement('p');
+  const comments = document.createElement('div');
   comments.innerHTML = review.comments;
   comments.setAttribute('class', 'comment');
   li.appendChild(comments);

@@ -22,6 +22,8 @@
 </head>
 
 <body class="inside">
+  <a class="skip-main" href="#maincontent">Skip to main content</a>
+
   <!-- Beginning header -->
   <header>
     <!-- Beginning nav -->
@@ -46,8 +48,8 @@
   <!-- Beginning main -->
   <main id="maincontent" role="application">
     <!-- Beginning map -->
-    <section id="map-container">
-      <div id="map"></div>
+    <section id="map-container" aria-atomic="true" aria-owns="map" tabindex="-1">
+      <div id="map" role="application" aria-label="Map with restaurants"></div>
     </section>
     <!-- End map -->
     <!-- Beginning restaurant -->

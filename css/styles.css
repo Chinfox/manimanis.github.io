@@ -351,31 +351,36 @@ nav h1 a {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
+  justify-content: flex-start;
+  align-content: flex-start;
 }
 
-#reviews-list li p {
-  margin: 0.5em;
+#reviews-list li div, #reviews-list li h3 {
+  margin: 0 0.5em;
   width: 100%;
 }
 
-#reviews-list li p.author {
+#reviews-list li h3.author {
   font-size: 18pt;
   font-weight: bold;
   text-transform: uppercase;
+  line-height: 2em;
+  height: 45px;
 }
 
-#reviews-list li p.rating,
-#reviews-list li p.date {
-  font-size: 1.5em;
-  width: calc((100% - 2 * 1em) / 2);
+#reviews-list li .rating,
+#reviews-list li .date {
   min-width: 160px;
+  height: 2em;
 }
 
-#reviews-list li p.rating {
+#reviews-list li .rating {
+  font-size: 1em;
   color: gold;
+  height: 2em;
 }
 
-#reviews-list li p.comment {
+#reviews-list li .comment {
   font-size: 0.95em;
   font-style: italic;
   padding-bottom: 1em;
@@ -402,4 +407,30 @@ nav h1 a {
   background-color: #01447e !important;
   color: #fff !important;
   box-shadow: 0 0 10px red;
+}
+
+a.skip-main {
+  left:-999px;
+  position:absolute;
+  top:auto;
+  width:1px;
+  height:1px;
+  overflow:hidden;
+  z-index:-999;
+}
+
+a.skip-main:focus, a.skip-main:active {
+  color: #fff;
+  background-color:#000;
+  left: 0;
+  top: 0;
+  width: auto;
+  height: auto;
+  overflow:auto;
+  padding: 7px 14px;
+  border-radius: 15px;
+  border:4px solid yellow;
+  text-align:center;
+  font-size:1.2em;
+  z-index:999;
 }
